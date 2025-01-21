@@ -1,0 +1,259 @@
+.content-consultant{
+    margin-top: 90px;
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 1px #E1E5EE;
+}
+
+.container-1{
+    margin-top: 10px;
+    height: 320px;
+    width: 1250px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px #E1E5EE;
+}
+.image{
+    margin: 5px;
+    width: 200px;
+    height: 290px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5em;
+}
+
+.image img{
+    height: 100%;
+    width: auto;
+    border-radius: 10%;
+}
+
+.name-assessment-status{
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    align-items: start;
+    margin: 120px 0 0px 15px;
+    width: 500px;
+    flex: 0 1 auto; 
+}
+
+.name-assessment{
+
+}
+
+.name-assessment-sub{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.name-consultant{
+    margin: 0;
+    font-size: xx-large;
+    /* font-family: "Changa", serif;
+    font-optical-sizing: auto;
+    font-weight: 200; */
+    font-family: "DM Serif Display", serif;
+  font-weight: 800;
+  font-style: normal;
+    
+}
+
+.assessment{
+    margin-bottom: 20px;
+}
+
+.status{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 70px;
+    margin: 8px 10px 0 20px;
+    background-color: inherit;
+    border-radius: 2em;
+    border: 2px solid green;
+    color: green;
+}
+
+.star{
+    margin-top: 8px;
+    font-size: x-large;
+    color: rgb(245, 231, 40);
+}
+.content-occurred p, i{
+    margin: 0;
+    font-weight: 800;
+    margin-bottom:5px ;
+    color: rgb(140, 181, 201);
+}
+
+.content-occurred-sub{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+.occurred{
+    margin-right: 10px; 
+}
+
+.container-2{
+    width: 1250px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.data-profile{
+    width: 625px; 
+}
+
+.c-specialties{
+    width: 625px;   
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+}
+
+.data-profile h3{
+    
+    margin-left: 8px;
+    margin-right: 8px;
+    font-size: xx-large;
+    font-family: "Changa", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+.data-profile p{
+    font-size: large;
+    text-align: justify;
+    margin-left: 8px;
+    margin-right: 8px;
+    font-family: "Changa", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+}
+
+.c-specialties h2{
+    margin: 2px;
+}
+.c-specialties p{
+    margin: 5px;
+}
+.c-specialties h3{
+   margin-left: 90px;
+   font-size: x-large;
+   font-family: "Changa", serif;
+   font-optical-sizing: auto;
+   font-weight: 400;
+  
+}
+
+.c-specialties-unit{
+    padding: 10px;
+    height: 90px;
+    width: 60%;
+    border-radius: 2em;
+    border: solid 1px rgba(207, 220, 226, 0.404);
+    margin: 10px 0px 10px 90px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    background-color: rgba(207, 220, 226, 0.404);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-specialties-unit div{
+    display: flex;
+    flex-direction: row;  
+}
+.c-specialties-unit:hover{
+    color: brown;
+    background-color: rgb(140, 181, 201);
+}
+
+@media(max-width: 1250px){
+    .container-1{
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-2{
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media(max-width: 980px){
+    .container-2{
+        flex-direction: column;
+    }
+   
+}
+@media(max-width: 660px){
+    .container-2{
+        justify-content: center;
+        align-items: center;
+    }
+    .data-profile{
+        width: 100vw; 
+    }
+    .c-specialties{
+        width: 100vw;  
+        justify-content: center;
+        align-items: center; 
+    }
+    .c-specialties h3{
+        margin-left: 0;
+    }
+    .c-specialties-unit{
+        margin-left: 0;
+    }
+    .container-1{
+        height: 500px;
+        flex-direction: column;
+    }
+    .name-assessment-status{
+        margin-top: 10px;
+        width: 100vw;
+        margin-left: 0;
+        justify-content: center;
+    }
+    .name-assessment{
+        display: flex ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .image{
+        width: 200px;
+        height: 390px;
+       
+    }
+    .data-profile h3{
+        margin-left: 20px;
+        margin-right: 20px;
+        font-size: x-large;
+    }
+    .data-profile p{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .name-assessment-sub, .assessment, .content-occurred{
+        margin-left: 5px;
+    }
+    .name-assessment-sub {
+        flex-direction: column;
+    } 
+}

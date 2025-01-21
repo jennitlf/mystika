@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Header from './components/Header';
 import HeaderMobile from './components/HeaderMobile';
 import MyData from './components/MyData';
+import Consultant from './components/Consultant';
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Navigate to="/consultores" />} />
           <Route path="/consultores" element={<Home/>} />
           <Route path="/meus-dados" element={<MyData/>}/>
+          <Route path="/consultor/:id" element={<Consultant/>}/>
         </Routes>
 
       </div>
