@@ -38,10 +38,11 @@ const Home = () => {
         setLoading(false);
       }
     };
-    console.log(page)
+   
     fetchConsultants();
 
   }, [queryString, params, page]);
+
 
   useEffect(() => {
 
