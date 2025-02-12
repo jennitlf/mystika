@@ -22,11 +22,14 @@
 .logo img{
     height: 100%;
 }
-.menu-user{
+.content-button-enter{
     width: 7%;
     height: 50%;
     margin:0 10px 0 20%;
-    
+}
+.menu-user{
+    width: 100%;
+    height: 100%;    
 }
 .menu-user button{
     width: 100%;
