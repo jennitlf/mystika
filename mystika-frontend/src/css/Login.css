@@ -99,6 +99,16 @@
     border-color: rgb(206, 132, 103);
     box-shadow: 0 0 4px rgb(206, 132, 103);
     outline: none;
+    height: 50px;
+    width: 150px;
+}
+
+.container-button-submit button:hover{
+    border-color: rgb(206, 132, 103);
+    box-shadow: 0 0 4px rgb(206, 132, 103);
+    outline: none;
+    height: 35px;
+    width: 118px;
 }
 .redirection-to-resgitry{
     
@@ -120,3 +130,12 @@
 .registry-link:hover{
     font-size: large;
   }
+
+.redirection-to-recovery{
+    color: rgb(65, 65, 65);
+    margin: 0;
+    font-size:small;
+    font-family: "Comfortaa", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}

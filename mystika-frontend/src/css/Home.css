@@ -176,6 +176,18 @@
   
 }
 
+.loading-consultant-list-filter{
+ 
+    width: 100vw;
+    height: 100vh;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
 @media (max-width: 800px){
   #title-consultant-page{
     margin: 130px auto 40px auto;
