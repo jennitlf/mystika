@@ -72,7 +72,7 @@ const Consultant = () => {
                 <div className="c-specialties">
                     <h3>Especialista em:</h3>
                     {consultant.map((specialty)=>(
-                        <div id={specialty.specialty.name_specialty} className="c-specialties-unit">
+                        <div id={specialty.specialty.name_specialty} key={specialty.specialty.name_specialty} className="c-specialties-unit">
                             <h2>{specialty.specialty.name_specialty}</h2>
                             <div>
                                 <p>Duração:{specialty.duration} minutos</p>
