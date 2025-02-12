@@ -5,7 +5,9 @@ import "../css/Home.css"
 
 
 const Consultant = ({consultants}) => {
-
+  if (!consultants) {
+    return <div className="loading-consultant-list-filter">Carregando...</div>; 
+  }
     const specialty = ( consultant )=> { 
         if (consultant.specialties.length > 1) {  
           return (
