@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from "react";
 import Consultants from "./Consultants"
-// import { Link } from 'react-router-dom';
 import "../css/Home.css"
 import Filters from "./Filters";
 import Page from "./Page";
+import { API } from "../config";
 
 
 const Home = () => {
@@ -25,7 +25,7 @@ const Home = () => {
     
     const fetchConsultants = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/general-find?page=${page}&${queryString}`);
+        const response = await fetch(`${API}/general-find?page=${page}&${queryString}`);
         ///                                 
         const data = await response.json();
         setConsultants(data.data);

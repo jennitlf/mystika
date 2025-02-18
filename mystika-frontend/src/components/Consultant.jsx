@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../css/Consultant.css";
+import { API } from "../config";
 
 const Consultant = () => {
   const { id } = useParams();
@@ -42,7 +43,7 @@ const Consultant = () => {
     const fetchConsultant = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/consultant-specialty?idConsultant=${id}&page=1&limit=9`
+          `${API}/consultant-specialty?idConsultant=${id}&page=1&limit=9`
         );
         const data = await response.json();
         setConsultant(data.data);
@@ -61,7 +62,7 @@ const Consultant = () => {
       setAvailableTimes([]);
       setSelectedDateTime(null);
       const response = await fetch(
-        `http://localhost:3001/schedule-consultant/${idConsultantSpecialty}/timeslots`
+        `${API}/schedule-consultant/${idConsultantSpecialty}/timeslots`
       );
       const data = await response.json();
       // Agrupar os horários por data e ordenar as datas em ordem crescente
