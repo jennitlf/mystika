@@ -5,22 +5,34 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { AuthContext } from "../context/AuthContext";
 import { API } from "../config";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+    email: yup.string().email("Informe um email válido").required(),
+    password: yup.string().min(7, "Informe o minimo de 7 caracteres").required()
+})
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema)
+  })
   const { login } = useContext(AuthContext);
  
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async (data) => {
+    data.status = "ativo";
     try {
       const response = await fetch(`${API}/auth/login`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
@@ -44,26 +56,21 @@ const Login = () => {
       </div>
       <div className="box-login-2">
         <div className="title-login">Login</div>
-        <form className="form-login" onSubmit={handleSubmit}>
+        <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-field">
             <label htmlFor="e-mail">E-mail:</label>
             <input
-              name="e-mail"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              {...register("email")}
             />
+            {errors.email && <p className="error-message">{errors.email.message}</p>}
           </div>
           <div className="form-field">
             <label htmlFor="password">Senha:</label>
             <input
-              name="password"
+            {...register("password")}
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
             />
+            {errors.password && <p className="error-message">{errors.password.password}</p>}
           </div>
           <div className="container-button-submit">
             <button type="submit">Entrar</button>

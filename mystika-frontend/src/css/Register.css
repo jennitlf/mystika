@@ -46,14 +46,14 @@
 
 .form-regiter{
     width: 320px;
-    height: 230px;
+    height: 250px;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 .form-field-register{
     width: 90%;
-    height: 60px;
+    height: 70px;
     display: flex;
     flex-direction: column;
 }
@@ -94,3 +94,9 @@
 .login-link:hover{
     font-size: large;
   }
+
+.error-message{
+    font-size: small;
+    margin: 0;
+    color: red;
+}
