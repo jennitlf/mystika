@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "../css/Consultant.css";
 import { API } from "../config";
+import { AuthContext } from "../context/AuthContext";
+import { toast } from 'react-toastify';
 
 const Consultant = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [consultant, setConsultant] = useState(null);
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
@@ -12,7 +15,8 @@ const Consultant = () => {
   const [showModal, setShowModal] = useState(false);
   const [availableTimes, setAvailableTimes] = useState([]);
   const [selectedDateTime, setSelectedDateTime] = useState(null);
-
+  const { token, user } = useContext(AuthContext);
+ 
   // Função para converter a string de data para um objeto Date local
   const parseLocalDate = (dateStr) => {
     const [year, month, day] = dateStr.split('-').map(Number);
@@ -25,10 +29,12 @@ const Consultant = () => {
       const dateKey = slot.date;
       if (!acc[dateKey]) {
         acc[dateKey] = { 
-          date: slot.date, 
+          date: slot.date,
+          schedule_id: slot.schedule_id,
           available_times: [...slot.available_times] 
         };
       } else {
+        // Apenas agrupa os horários, sem alterar o schedule_id já definido
         acc[dateKey].available_times = Array.from(
           new Set([...acc[dateKey].available_times, ...slot.available_times])
         );
@@ -55,6 +61,7 @@ const Consultant = () => {
     };
 
     fetchConsultant();
+
   }, [id]);
 
   const handleSpecialtyClick = async (idConsultantSpecialty) => {
@@ -83,15 +90,55 @@ const Consultant = () => {
     setAvailableTimes(times);
     setSelectedDateTime({ date, time: null });
   };
-
   const handleTimeClick = (time) => {
     setSelectedDateTime((prev) => ({ ...prev, time }));
   };
-
   if (loading) {
     return <p>Carregando consultores...</p>;
   }
 
+  const postConsultation = async () => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    if (!selectedSpecialty || !selectedDateTime?.date || !selectedDateTime?.time) {
+      toast.error("Por favor, selecione uma especialidade, data e horário.");
+      return;
+    }
+    const selectedSchedule = schedule.find((slot) => slot.date === selectedDateTime.date);
+    if (!selectedSchedule) {
+      toast.error("Horário inválido ou indisponível.");
+      return;
+    }
+    const data = {
+      id_customer: user.id, 
+      id_consultant_specialty: selectedSpecialty,
+      id_schedule_consultant: selectedSchedule.schedule_id, 
+      appoinment_time: selectedDateTime.time, 
+      appoinment_date: selectedDateTime.date, 
+    };
+    try {
+      const response = await fetch(`${API}/consultation`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Erro ao marcar consulta.");
+      }
+  
+      toast.success("Consulta marcada com sucesso!");
+      navigate(`/consultor/${id}`);
+    } catch (error) {
+      console.error("Erro ao marcar consulta:", error);
+      toast.error("Erro ao marcar consulta.");
+    }
+  };
   return (
     <div className="content-consultant">
       <div className="container-1">
@@ -199,6 +246,7 @@ const Consultant = () => {
               </div>
             )}
             <button
+            onClick={postConsultation}
               className="schedule-button"
               disabled={!selectedDateTime?.date || !selectedDateTime?.time}
             >
