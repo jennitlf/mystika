@@ -1,5 +1,5 @@
 .content-consultant{
-    margin-top: 90px;
+    margin-top: 65px;
     width: 100vw;
     height: auto;
     display: flex;
@@ -27,6 +27,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 0.5em;
+    z-index: 1;
 }
 
 .image img{
@@ -62,8 +63,8 @@
     font-optical-sizing: auto;
     font-weight: 200; */
     font-family: "DM Serif Display", serif;
-  font-weight: 800;
-  font-style: normal;
+    font-weight: 800;
+    font-style: normal;
     
 }
 
