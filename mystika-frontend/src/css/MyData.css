@@ -3,19 +3,19 @@
     height: 100vh;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    background-color: aliceblue;
 }
 
 .nav-my-data{
-    width: 270px;
-    height: 600px;
+    margin-top: 100px;
+    width: 20vw;
+    height: 88vh;
     display: flex;
     flex-direction: column;
     justify-content: top;
     align-items: center;
     list-style: none;
-    background-color: rgb(139, 148, 153);
+    background-color: aliceblue;
 }
 .nav-my-data button{
     padding: 0 0 0 8% ;
@@ -25,15 +25,16 @@
     align-items: center;
     border: none;
     background-color: blue;
-    font-family: "DM Serif Display", serif;
-    font-weight: 800;
-    font-style: normal;
+    font-family: "Changa", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
     cursor: pointer;
     font-size: large;
 }
 
 .content-main-my-data{
-    width: 800px;
-    height: 600px;
+    margin-top: 75px;
+    width: 80vw;
+    height: 91vh;
     background-color: rgb(208, 225, 233);
 }
