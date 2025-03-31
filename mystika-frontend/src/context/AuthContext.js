@@ -9,6 +9,7 @@ export const getUserFromToken = (token) => {
     const now = Date.now() / 1000; 
     if (decoded.exp && decoded.exp > now) {
       return {
+        id: decoded.id,
         name: decoded.name,
         email: decoded.email,
       };
@@ -22,22 +23,19 @@ export const getUserFromToken = (token) => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const userData = getUserFromToken(token);
+    const storedToken = localStorage.getItem('token'); 
+    if (storedToken) {
+      const userData = getUserFromToken(storedToken);
       if (userData) {
         setUser(userData);
+        setToken(storedToken);  // Armazena o token
       } else {
-        localStorage.removeItem('token'); 
+        localStorage.removeItem('token');
       }
-    }
-
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser)); 
     }
     setLoading(false);
   }, []);
@@ -46,20 +44,23 @@ export const AuthProvider = ({ children }) => {
     const userData = getUserFromToken(token);
     if (userData) {
       setUser(userData);
+      setToken(token); 
       localStorage.setItem('token', token);
-      console.log("estou aqui", localStorage)
     } else {
       console.error("Token inválido fornecido no login.");
+      logout();
     }
   };
 
   const logout = () => {
     setUser(null);
+    setToken(null);  // Remove o token do estado
     localStorage.removeItem('token');
+    window.location.reload();
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, token, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

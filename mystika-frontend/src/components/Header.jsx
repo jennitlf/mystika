@@ -7,10 +7,8 @@ import { AuthContext } from '../context/AuthContext.js';
 
 const Header = () => {
 
-    const { user } = useContext(AuthContext);
-  
-
-
+    const { user, logout } = useContext(AuthContext);
+    
     return (
         <div className="header">
             <div className="logo"><img src={file} alt="logo do site" /></div>
@@ -20,7 +18,7 @@ const Header = () => {
                 <Link className="menu-nav">ajuda</Link>
             </ul>
             <div className="content-button-enter">
-            {user ? <div className="menu-user"> <button >{user.name}</button> </div>: <Link className="menu-user" to={'/login'}> <button>Entrar</button></Link>}
+            {user ? <div className="menu-user"> <button >{user.name}</button> <span className="material-symbols-outlined logout" onClick={()=> logout()}>logout</span></div>: <Link className="menu-user" to={'/login'}> <button>Entrar</button></Link>}
             </div>
             {/* <Link className="menu-user" to={'/login'}> <button>Entrar</button></Link> */}
         </div>
