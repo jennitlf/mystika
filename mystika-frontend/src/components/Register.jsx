@@ -68,7 +68,6 @@ const Register = () => {
                     <div className="form-field-register">
                         <label htmlFor="phone">Telefone:</label>
                         <input 
-
                         {...register("phone")}
                         type="number" 
                         />
