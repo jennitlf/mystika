@@ -29,7 +29,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     data.status = "ativo";
     try {
-      const response = await fetch(`${API}/auth/login`, {
+      const response = await fetch(`${API}/auth/customer/login`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(data),

@@ -32,7 +32,7 @@ const Register = () => {
     const onSubmit = async (data) => {
         data.status = "ativo";
         try {
-          const response = await fetch(`${API}/auth/register`, {
+          const response = await fetch(`${API}/auth/customer/register`, {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),

@@ -112,7 +112,6 @@ const Consultant = () => {
       return;
     }
     const data = {
-      id_customer: user.id, 
       id_consultant_specialty: selectedSpecialty,
       id_schedule_consultant: selectedSchedule.schedule_id, 
       appoinment_time: selectedDateTime.time, 
