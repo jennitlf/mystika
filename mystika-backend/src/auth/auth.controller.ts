@@ -1,9 +1,8 @@
 // auth.controller.ts
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthRegisterDto } from './dto/auth-register.dto';
+import { CreateCustomerDto } from 'src/shared/dtos/create-customer.dto';
 import { ApiBody } from '@nestjs/swagger';
-
 
 @Controller('auth')
 export class AuthController {
@@ -15,16 +14,15 @@ export class AuthController {
     schema: {
       type: 'object',
       properties: {
-        name: { type: 'string', example: 'Brandão Junior'},
-        phone: { type: 'string', example: '99999-9999'},
+        name: { type: 'string', example: 'Brandão Junior' },
+        phone: { type: 'string', example: '99999-9999' },
         email: { type: 'string', example: 'usuario@exemplo.com' },
         password: { type: 'string', example: 'senha123' },
-        status: { type: 'string', example: 'ativo'}
+        status: { type: 'string', example: 'ativo' },
       },
     },
   })
-  async register(@Body() body: AuthRegisterDto) {
-    // Aqui, passamos todos os dados, incluindo o email e senha, para o authService
+  async register(@Body() body: CreateCustomerDto) {
     return this.authService.register(body);
   }
 
