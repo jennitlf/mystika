@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import '../css/ScheduledAppointments.css';
 import { AuthContext } from '../context/AuthContext.js';
-import { API } from "../config";
+import { API } from "../config.js";
 
 const ScheduledAppointments = () => {
 
