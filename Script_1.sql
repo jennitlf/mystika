@@ -5,7 +5,7 @@ CREATE TABLE customer (
 	email VARCHAR(60) unique not null,
 	password VARCHAR(255) not null,
 	status VARCHAR(15) not null default 'ativo',	
-	role varchar(25) not null default 'user',
+	"role" VARCHAR(25) not null default 'user',
 	created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp 
 );
@@ -20,12 +20,12 @@ CREATE TABLE consultant(
 	profile_data VARCHAR(800) not null,
 	image_consultant VARCHAR(300) not null,
 	status VARCHAR(15) not null default 'inativo',
-	paymant_plan VARCHAR(25) not null default 'mensal',
-	appellant boolean not null default 'mensal',
+	payment_plan VARCHAR(25) not null default 'mensal',
+	appellant boolean not null default 'false',
 	about_specialties VARCHAR(700) not null,
 	consultants_story VARCHAR(700) not null,
 	consultations_carried_out int not null default 100,
-	role varchar(25) not null default 'consultant',
+	"role" varchar(25) not null default 'consultant',
 	created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp 
 );
@@ -47,11 +47,11 @@ CREATE TABLE CONSULTANT_SPECIALTY(
 create table SCHEDULE_CONSULTANT(
 	id SERIAL primary key,
 	id_consultant_specialty int not null,
-	date date not null,
+	"date" date not null,
 	day_week INT,
 	hour_initial time not null,
 	hour_end time not null,
-	status varchar(25),
+	status varchar(25) DEFAULT 'disponivel',
 	foreign key (id_consultant_specialty) references consultant_specialty(id) 
 );
 
@@ -110,6 +110,7 @@ create table consultation (
 	id serial primary key,
 	id_customer int not null references customer(id),
 	id_schedule_consultant int not null references schedule_consultant(id),
+	appoinment_date date NOT NULL,
 	appoinment_time time not null,
 	status varchar(20) not null default 'pending',
 	attended varchar(3) NOT NULL DEFAULT 'pending'
