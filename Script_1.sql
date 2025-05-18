@@ -1,31 +1,31 @@
 CREATE TABLE customer (
 	id SERIAL PRIMARY KEY,
-	name VARCHAR(60) not null,
-	phone VARCHAR(15) not null,
-	email VARCHAR(60) unique not null,
-	password VARCHAR(255) not null,
+	name VARCHAR(60) not NULL default 'NaN',
+	phone VARCHAR(15) not NULL default 'NaN',
+	email VARCHAR(60) unique not NULL default 'NaN',
+	password VARCHAR(255) not NULL default 'NaN',
 	status VARCHAR(15) not null default 'ativo',	
-	"role" VARCHAR(25) not null default 'user',
+	"role" VARCHAR(4) not null default 'user',
 	created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp 
 );
 
 CREATE TABLE consultant(
 	id SERIAL PRIMARY KEY,
-	name VARCHAR(60) not null,
-	cpf VARCHAR(11) not null,
-	phone VARCHAR(15) not null,
+	name VARCHAR(60) not NULL default 'NaN',
+	cpf VARCHAR(11) not NULL default 'NaN',
+	phone VARCHAR(15) not NULL default 'NaN',
 	email VARCHAR(60) unique not null,
-	password VARCHAR(255) not null,
-	profile_data VARCHAR(800) not null,
-	image_consultant VARCHAR(300) not null,
+	password VARCHAR(255) not NULL default 'NaN',
+	profile_data VARCHAR(800) not NULL default 'NaN',
+	image_consultant VARCHAR(300) not NULL default 'NaN',
 	status VARCHAR(15) not null default 'inativo',
 	payment_plan VARCHAR(25) not null default 'mensal',
 	appellant boolean not null default 'false',
-	about_specialties VARCHAR(700) not null,
-	consultants_story VARCHAR(700) not null,
+	about_specialties VARCHAR(700) not NULL default 'NaN',
+	consultants_story VARCHAR(700) not null default 'NaN',
 	consultations_carried_out int not null default 100,
-	"role" varchar(25) not null default 'consultant',
+	"role" varchar(10) not null default 'consultant',
 	created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp 
 );
@@ -70,7 +70,7 @@ create table adm(
 	name varchar(80) not null,
 	email varchar(254) unique not null,
 	password varchar(255) not null,
-	role varchar(25) not null,
+	"role" varchar(3) not NULL DEFAULT 'administrador',
 	created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp 
 );
@@ -78,12 +78,12 @@ create table adm(
 create table customer_support(
 	id serial primary key,
 	id_customer int not null,
-	email varchar(254) not null,
+	email varchar(60) not null,
 	phone varchar(15) not null,
 	title varchar(100) not null,
 	content varchar(300) not null,
 	status varchar(30) not null default 'pending',
-	adm_responsible int not null default 'pending',
+	adm_responsible int not null default 0,
 	created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp, 
 	foreign key (id_customer) references  customer(id) on delete cascade,
@@ -93,12 +93,12 @@ create table customer_support(
 create table consultant_support(
 	id serial primary key,
 	id_consultant int not null,
-	email varchar(30) not null,
+	email varchar(60) not null,
 	phone varchar(15) not null,
 	title varchar(100) not null,
 	content varchar(300) not null,
 	status varchar(50) not null default 'pending',
-	adm_responsible int not null default 'pending',
+	adm_responsible int not null default 0,
 	created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp, 
 	foreign key (id_consultant) references consultant(id) on delete cascade,
@@ -108,12 +108,12 @@ create table consultant_support(
 
 create table consultation (
 	id serial primary key,
-	id_customer int not null references customer(id),
-	id_schedule_consultant int not null references schedule_consultant(id),
-	appoinment_date date NOT NULL,
-	appoinment_time time not null,
+	id_customer int not null references customer(id) default 0,
+	id_schedule_consultant int not null references schedule_consultant(id) default 0,
+	appoinment_date date NOT NULL default 'NaN',
+	appoinment_time time not NULL default 'NaN',
 	status varchar(20) not null default 'pending',
-	attended varchar(3) NOT NULL DEFAULT 'pending'
+	attended varchar(7) NOT NULL DEFAULT 'pending'
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp 
 )
